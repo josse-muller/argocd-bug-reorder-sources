@@ -9,7 +9,7 @@ spec:
   generators:
   - list:
       elements:
-      - reverseOrder: false
+      - reverseOrder: true
   template:
     metadata:
       name: 'parent-appset'
