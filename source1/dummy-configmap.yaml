@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: source1-cm
 data:
-  key: val
+  key: val-changed
 
