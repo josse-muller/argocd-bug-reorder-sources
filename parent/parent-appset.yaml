@@ -19,19 +19,20 @@ spec:
         server: https://kubernetes.default.svc
         namespace: argocd
   templatePatch: |
-    sources:
-    {{- if .reorderSources }}
-      - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
-        path: "source1"
-        targetRevision: main
-      - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
-        path: "source2"
-        targetRevision: main
-    {{- else }}
-      - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
-        path: "source2"
-        targetRevision: main
-      - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
-        path: "source1"
-        targetRevision: main
-    {{- end }}
+    spec:
+      sources:
+      {{- if .reorderSources }}
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
+          path: "source1"
+          targetRevision: main
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
+          path: "source2"
+          targetRevision: main
+      {{- else }}
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
+          path: "source2"
+          targetRevision: main
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
+          path: "source1"
+          targetRevision: main
+      {{- end }}
