@@ -9,7 +9,7 @@ spec:
   generators:
   - list:
       elements:
-      - reverseOrder: true
+      - reverseOrder: false
   template:
     metadata:
       name: 'parent-appset'
@@ -19,9 +19,9 @@ spec:
         server: https://kubernetes.default.svc
         namespace: argocd
       sources:
-        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources{{- if .reverseOrder }}-2{{end}}
           path: "{{- if .reverseOrder }}source2{{else}}source1{{end}}"
           targetRevision: main
-        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2{{- if not .reverseOrder }}-2{{end}}
           path: "{{- if .reverseOrder }}source1{{else}}source2{{end}}"
           targetRevision: main
