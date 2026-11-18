@@ -10,11 +10,15 @@ spec:
   - list:
       elements:
       - reverseOrder: false
+  template:
+    metadata:
+      name: 'multisource-app'
+    spec:
+      project: "default"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
   templatePatch: |
-    project: default
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: argocd
     sources:
     {{- if .reorderSources }}
       - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
