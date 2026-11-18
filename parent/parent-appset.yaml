@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: parent-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - reverseOrder: false
+  template:
+    metadata:
+      name: 'parent-appset'
+    spec:
+      project: default
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      sources:
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
+          path: "{{- if .reverseOrder }}source2{{else}}source1{{end}}"
+          targetRevision: main
+        - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
+          path: "{{- if .reverseOrder }}source1{{else}}source2{{end}}"
+          targetRevision: main
