@@ -9,7 +9,7 @@ spec:
   generators:
   - list:
       elements:
-      - reorderSources: false
+      - reorderSources: true
   template:
     metadata:
       name: 'multisource-app'
