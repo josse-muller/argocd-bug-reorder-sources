@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'multisource-app'
+spec:
+  project: "default"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true
+  sources:
+    - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
+      path: "source2"
+      targetRevision: main
+    - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
+      path: "source1"
+      targetRevision: main
+
+
