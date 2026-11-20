@@ -12,10 +12,15 @@ spec:
       selfHeal: true
   sources:
     - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources-2
-      path: "source2"
-      targetRevision: main
+      path: "helmvals"
+      targetRevision: with-helm
+      ref: source2
     - repoURL: https://github.com/josse-muller/argocd-bug-reorder-sources
       path: "source1"
-      targetRevision: main
+      targetRevision: with-helm
+      helm:
+        valueFiles:
+        - $source2/vals.yaml
+
 
 

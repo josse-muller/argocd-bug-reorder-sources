@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: source1-cm
 data:
-  key: val-changed
+  key: {{ .Values.source2Value | quote }}
 
